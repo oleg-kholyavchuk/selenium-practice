@@ -65,8 +65,8 @@ public class CssSelectorWikiTest {
                 to("https://ru.wikipedia.org/wiki/%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5#%D0%AF%D0%B7%D1%8B%D0%BA%D0%B8_%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F");
         Thread.sleep(3000);
 
-        driver.findElement(By.cssSelector(".vector-search-box-input")).sendKeys("Java");
-        driver.findElement(By.cssSelector(".vector-search-box-input")).sendKeys(Keys.RETURN);
+        driver.findElement(By.cssSelector("input.vector-search-box-input")).sendKeys("Java");
+        driver.findElement(By.cssSelector("input.vector-search-box-input")).sendKeys(Keys.RETURN);
 
         Thread.sleep(3000);
         String currentUrl = driver.getCurrentUrl();
@@ -82,7 +82,7 @@ public class CssSelectorWikiTest {
                 to("https://ru.wikipedia.org/wiki/%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5#%D0%AF%D0%B7%D1%8B%D0%BA%D0%B8_%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F");
         Thread.sleep(3000);
 
-        WebElement element = driver.findElement(By.cssSelector("[title='Форум участников Википедии']"));
+        WebElement element = driver.findElement(By.cssSelector("a[title='Форум участников Википедии']"));
         element.click();
 
         Thread.sleep(3000);
