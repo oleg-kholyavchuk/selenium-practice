@@ -37,8 +37,6 @@ public class HomePractiseTest {
         driver.quit();
     }
 
-
-
     @Test
     public void shouldHaveCorrectSwitchingToHelp(){
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
