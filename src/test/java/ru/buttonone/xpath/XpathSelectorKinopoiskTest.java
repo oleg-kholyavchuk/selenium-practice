@@ -21,7 +21,7 @@ public class XpathSelectorKinopoiskTest {
         WebElement element = driver.findElement(By.xpath("//img[@alt='https://vk.com/kinopoisk']"));
         element.click();
 
-        WebDriver window = driver.switchTo().window((new ArrayList<String>(driver.getWindowHandles())).get(1));
+        WebDriver window = driver.switchTo().window((new ArrayList<>(driver.getWindowHandles())).get(1));
         String currentUrl = window.getCurrentUrl();
         Assertions.assertEquals("https://vk.com/kinopoisk", currentUrl);
         driver.quit();
@@ -37,7 +37,7 @@ public class XpathSelectorKinopoiskTest {
         element.click();
 
         Thread.sleep(10000);
-        WebDriver window = driver.switchTo().window((new ArrayList<String>(driver.getWindowHandles())).get(1));
+        WebDriver window = driver.switchTo().window((new ArrayList<>(driver.getWindowHandles())).get(1));
         String currentUrl = window.getCurrentUrl();
         Assertions.assertEquals("https://www.youtube.com/user/kinopoisk", currentUrl);
         driver.quit();
@@ -84,7 +84,7 @@ public class XpathSelectorKinopoiskTest {
         element.click();
 
         Thread.sleep(3000);
-        WebDriver window = driver.switchTo().window((new ArrayList<String>(driver.getWindowHandles())).get(1));
+        WebDriver window = driver.switchTo().window((new ArrayList<>(driver.getWindowHandles())).get(1));
         String currentUrl = window.getCurrentUrl();
         Assertions.assertEquals("https://yandex.ru/jobs/vacancies?professions=backend-developer&professions=database-developer&professions=desktop-developer&professions=frontend-developer&professions=full-stack-developer&professions=mob-app-developer&professions=mob-app-developer-android&professions=mob-app-developer-ios&professions=noc-developer&professions=system-developer", currentUrl);
         driver.quit();
