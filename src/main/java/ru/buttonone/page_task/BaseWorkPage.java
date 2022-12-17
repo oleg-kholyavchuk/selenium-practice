@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 
 public abstract class BaseWorkPage {
-    public WebDriver driver;
+    protected WebDriver driver;
 
     public BaseWorkPage(WebDriver driver) {
         this.driver = driver;
