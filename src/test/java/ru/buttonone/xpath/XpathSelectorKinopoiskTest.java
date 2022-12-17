@@ -46,7 +46,7 @@ public class XpathSelectorKinopoiskTest extends BaseTest {
         KinopoiskPage kinopoiskPage = new KinopoiskPage(driver, "//a[text()='Попробовать Плюс']");
         kinopoiskPage.clickKinopoiskPage();
         Thread.sleep(3000);
-        Assertions.assertEquals("Игра престолов", kinopoiskPage.currentUrlWebElement());
+        Assertions.assertEquals("https://hd.kinopoisk.ru/?source=kinopoisk_head_button", kinopoiskPage.currentUrlWebElement());
     }
 
     @DisplayName("Transition By Click Link JobOpenings and correct transition  the on page JobOpenings")
