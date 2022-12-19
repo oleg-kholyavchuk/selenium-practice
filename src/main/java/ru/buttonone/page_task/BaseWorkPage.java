@@ -1,6 +1,7 @@
 package ru.buttonone.page_task;
 
 import org.openqa.selenium.WebDriver;
+import ru.buttonone.utils.Props;
 
 
 public abstract class BaseWorkPage {
@@ -11,6 +12,6 @@ public abstract class BaseWorkPage {
     }
 
     static {
-        System.setProperty("webdriver.chrome.driver", ConfProperties.getProperty("chromedriver"));
+        System.setProperty("webdriver.chrome.driver", Props.getProperty("chromedriver"));
     }
 }

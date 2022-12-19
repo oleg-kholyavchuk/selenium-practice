@@ -6,10 +6,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.buttonone.utils.Props;
 
+import java.time.Duration;
 import java.util.ArrayList;
 
+@SuppressWarnings("ALL")
 public class KinopoiskPage extends BaseWorkPage {
     private final WebElement webElement;
     @FindBy(xpath = "//input[@name='kp_query']")
@@ -19,7 +23,7 @@ public class KinopoiskPage extends BaseWorkPage {
         super(driver);
         PageFactory.initElements(driver, this);
         driver.navigate().to(Props.getProperty("url_kinopoisk"));
-        webElement = driver.findElement(By.xpath(xpathSearch));
+        webElement = (new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpathSearch))));
     }
 
     public void clickKinopoiskPage() {

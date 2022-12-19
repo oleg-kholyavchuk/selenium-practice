@@ -9,53 +9,52 @@ import ru.buttonone.page_task.KinopoiskGameOfThronesPage;
 import ru.buttonone.page_task.KinopoiskPage;
 
 
+import static ru.buttonone.constant.AssertionsExpected.*;
+import static ru.buttonone.constant.Locators.*;
+
+
 public class XpathSelectorKinopoiskTest extends BaseTest {
 
     @DisplayName("Transition By Click Link Vk Image and correct transition  the on page VK")
     @Test
     public void correctTransitionByClickLinkVkPage() {
-        KinopoiskPage kinopoiskPage = new KinopoiskPage(driver, "//img[@alt='https://vk.com/kinopoisk']");
+        KinopoiskPage kinopoiskPage = new KinopoiskPage(driver, IMG_VK_COM_KINOPOISK);
         kinopoiskPage.clickKinopoiskPage();
-        Assertions.assertEquals("https://vk.com/kinopoisk", kinopoiskPage.currentUrlWebDriver());
+        Assertions.assertEquals(VK_COM_KINOPOISK, kinopoiskPage.currentUrlWebDriver());
     }
 
     @DisplayName("Transition By Click Link YouTube Image and correct transition  the on page YouTube")
     @Test
-    public void  correctTransitionByClickLinkYouTubePage() throws InterruptedException {
-        KinopoiskPage kinopoiskPage = new KinopoiskPage(driver, "//img[@alt='https://www.youtube.com/user/kinopoisk']");
+    public void  correctTransitionByClickLinkYouTubePage() {
+        KinopoiskPage kinopoiskPage = new KinopoiskPage(driver, IMG_YOUTUBE_USER_KINOPOISK);
         kinopoiskPage.clickKinopoiskPage();
-        Thread.sleep(3000);
-        Assertions.assertEquals("https://www.youtube.com/user/kinopoisk", kinopoiskPage.currentUrlWebDriver());
+        Assertions.assertEquals(YOUTUBE_COM_USER_KINOPOISK, kinopoiskPage.currentUrlWebDriver());
     }
 
     @DisplayName("Transition the on page  Game Of Thrones on request  in the Search Box Query")
     @Test
-    public void correctTransitionPageGameOfThronesOnRequestInSearchBoxQuery() throws InterruptedException {
-        KinopoiskPage kinopoiskPage = new KinopoiskPage(driver, "//input[@name='kp_query']");
-        Thread.sleep(5000);
+    public void correctTransitionPageGameOfThronesOnRequestInSearchBoxQuery() {
+        KinopoiskPage kinopoiskPage = new KinopoiskPage(driver, INPUT_NAME_KP_QUERY);
         kinopoiskPage.searchByPhraseAndClickEnter("Игра престолов (сериал) 2011 – 2019");
-        Thread.sleep(5000);
         KinopoiskGameOfThronesPage kinopoiskGameOfThronesPage = new KinopoiskGameOfThronesPage(driver);
         WebElement titleGameOfThrones = kinopoiskGameOfThronesPage.getTitleGameOfThrones();
-        Assertions.assertEquals("Игра престолов", titleGameOfThrones.getText());
+        Assertions.assertEquals(GAME_OF_THRONES_TEXT, titleGameOfThrones.getText());
     }
 
     @DisplayName("Transition By Click Link TryPlus and correct transition  the on page TryPlus")
     @Test
-    public void correctTransitionByClickLinkTryPlusPage() throws InterruptedException {
-        KinopoiskPage kinopoiskPage = new KinopoiskPage(driver, "//a[text()='Попробовать Плюс']");
+    public void correctTransitionByClickLinkTryPlusPage() {
+        KinopoiskPage kinopoiskPage = new KinopoiskPage(driver, KINOPOISK_HEAD_BUTTON);
         kinopoiskPage.clickKinopoiskPage();
-        Thread.sleep(3000);
-        Assertions.assertEquals("https://hd.kinopoisk.ru/?source=kinopoisk_head_button", kinopoiskPage.currentUrlWebElement());
+        Assertions.assertEquals(KINOPOISK_RU_SOURCE_KINOPOISK_HEAD_BUTTON, kinopoiskPage.currentUrlWebElement());
     }
 
     @DisplayName("Transition By Click Link JobOpenings and correct transition  the on page JobOpenings")
     @Test
-    public void correctTransitionByClickLinkJobOpeningsPage() throws InterruptedException {
-        KinopoiskPage kinopoiskPage = new KinopoiskPage(driver, "//a[text()='Вакансии']");
+    public void correctTransitionByClickLinkJobOpeningsPage() {
+        KinopoiskPage kinopoiskPage = new KinopoiskPage(driver, JOBS_VACANCIES_SERVICES_KINOPOISK);
         kinopoiskPage.clickKinopoiskPage();
-        Thread.sleep(3000);
         Assertions.assertEquals(
-                "https://yandex.ru/jobs/vacancies?services=kinopoisk", kinopoiskPage.currentUrlWebDriver());
+                YANDEX_RU_JOBS__KINOPOISK, kinopoiskPage.currentUrlWebDriver());
     }
 }
