@@ -1,33 +1,30 @@
 package ru.buttonone.page_task;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.buttonone.utils.Props;
 
-import java.time.Duration;
 import java.util.ArrayList;
 
 @SuppressWarnings("ALL")
 public class KinopoiskPage extends BaseWorkPage {
-    private final WebElement webElement;
+    private WebElement webElement;
     @FindBy(xpath = "//input[@name='kp_query']")
     private WebElement searchField;
 
-    public KinopoiskPage(WebDriver driver, String xpathSearch) {
+    public KinopoiskPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
         driver.navigate().to(Props.getProperty("url_kinopoisk"));
-        webElement = (new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpathSearch))));
     }
 
-    public void clickKinopoiskPage() {
-        webElement.click();
+    public void clickKinopoiskPage(String xpathSearch) {
+        Actions actions = new Actions(driver);
+        webElement = driver.findElement(By.xpath(xpathSearch));
+        actions.pause(5).moveToElement(webElement).pause(5).click().build().perform();
     }
 
     public String currentUrlWebDriver() {
@@ -40,9 +37,11 @@ public class KinopoiskPage extends BaseWorkPage {
     }
 
     public SearchingResultWorkPage searchByPhraseAndClickEnter(String phrase) {
-        searchField.click();
-        searchField.sendKeys(phrase);
-        searchField.sendKeys(Keys.RETURN);
+        JavascriptExecutor exception = (JavascriptExecutor) driver;
+        Actions actions = new Actions(driver);
+        webElement = driver.findElement(By.xpath("//button[text()='Найти']"));
+        exception.executeScript("arguments[0].value = '" + phrase + "'", searchField);
+        actions.pause(5).moveToElement(webElement).click(webElement).build().perform();
         return new SearchingResultWorkPage(driver);
     }
 }
