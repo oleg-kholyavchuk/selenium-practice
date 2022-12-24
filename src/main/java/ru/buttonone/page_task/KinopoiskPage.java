@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 @SuppressWarnings("ALL")
 public class KinopoiskPage extends BaseWorkPage {
-    private WebElement webElement;
     @FindBy(xpath = "//input[@name='kp_query']")
     private WebElement searchField;
 
@@ -23,7 +22,7 @@ public class KinopoiskPage extends BaseWorkPage {
 
     public void clickKinopoiskPage(String xpathSearch) {
         Actions actions = new Actions(driver);
-        webElement = driver.findElement(By.xpath(xpathSearch));
+        WebElement webElement = driver.findElement(By.xpath(xpathSearch));
         actions.pause(5).moveToElement(webElement).pause(5).click().build().perform();
     }
 
@@ -39,7 +38,7 @@ public class KinopoiskPage extends BaseWorkPage {
     public SearchingResultWorkPage searchByPhraseAndClickEnter(String phrase) {
         JavascriptExecutor exception = (JavascriptExecutor) driver;
         Actions actions = new Actions(driver);
-        webElement = driver.findElement(By.xpath("//button[text()='Найти']"));
+        WebElement webElement = driver.findElement(By.xpath("//button[text()='Найти']"));
         exception.executeScript("arguments[0].value = '" + phrase + "'", searchField);
         actions.pause(5).moveToElement(webElement).click(webElement).build().perform();
         return new SearchingResultWorkPage(driver);

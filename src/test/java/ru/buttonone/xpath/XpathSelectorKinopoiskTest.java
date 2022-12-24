@@ -1,6 +1,5 @@
 package ru.buttonone.xpath;
 
-import lombok.SneakyThrows;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,19 +10,16 @@ import ru.buttonone.page_task.KinopoiskPage;
 
 
 import static ru.buttonone.constant.AssertionsExpected.*;
-import static ru.buttonone.constant.Locators.*;
+import static ru.buttonone.constant.KinopoiskLocators.*;
 
 
 public class XpathSelectorKinopoiskTest extends BaseTest {
 
-    @SneakyThrows
     @DisplayName("Transition By Click Link Vk Image and correct transition  the on page VK")
     @Test
     public void correctTransitionByClickLinkVkPage() {
         KinopoiskPage kinopoiskPage = new KinopoiskPage(driver);
-        Thread.sleep(3000);
         kinopoiskPage.clickKinopoiskPage(IMG_VK_COM_KINOPOISK);
-        Thread.sleep(3000);
         Assertions.assertEquals(VK_COM_KINOPOISK, kinopoiskPage.currentUrlWebDriver());
     }
 
