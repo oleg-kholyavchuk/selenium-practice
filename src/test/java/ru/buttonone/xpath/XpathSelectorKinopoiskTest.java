@@ -1,92 +1,60 @@
 package ru.buttonone.xpath;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import ru.buttonone.BaseTest;
+import ru.buttonone.page_task.KinopoiskGameOfThronesPage;
+import ru.buttonone.page_task.KinopoiskPage;
 
-import java.util.ArrayList;
 
-public class XpathSelectorKinopoiskTest {
+import static ru.buttonone.constant.AssertionsExpected.*;
+import static ru.buttonone.constant.KinopoiskLocators.*;
 
+
+public class XpathSelectorKinopoiskTest extends BaseTest {
+
+    @DisplayName("Transition By Click Link Vk Image and correct transition  the on page VK")
     @Test
-    public void correctTransitionByClickLinkVkImage() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        ChromeDriver driver = new ChromeDriver();
-        driver.navigate().to("https://www.kinopoisk.ru/");
-
-        WebElement element = driver.findElement(By.xpath("//img[@alt='https://vk.com/kinopoisk']"));
-        element.click();
-
-        WebDriver window = driver.switchTo().window((new ArrayList<>(driver.getWindowHandles())).get(1));
-        String currentUrl = window.getCurrentUrl();
-        Assertions.assertEquals("https://vk.com/kinopoisk", currentUrl);
-        driver.quit();
+    public void correctTransitionByClickLinkVkPage() {
+        KinopoiskPage kinopoiskPage = new KinopoiskPage(driver);
+        kinopoiskPage.clickKinopoiskPage(IMG_VK_COM_KINOPOISK);
+        Assertions.assertEquals(VK_COM_KINOPOISK, kinopoiskPage.currentUrlWebDriver());
     }
 
+    @DisplayName("Transition By Click Link YouTube Image and correct transition  the on page YouTube")
     @Test
-    public void  correctTransitionByClickLinkYouTube() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        ChromeDriver driver = new ChromeDriver();
-        driver.navigate().to("https://www.kinopoisk.ru/");
-
-        WebElement element = driver.findElement(By.xpath("//img[@alt='https://www.youtube.com/user/kinopoisk']"));
-        element.click();
-
-        Thread.sleep(10000);
-        WebDriver window = driver.switchTo().window((new ArrayList<>(driver.getWindowHandles())).get(1));
-        String currentUrl = window.getCurrentUrl();
-        Assertions.assertEquals("https://www.youtube.com/user/kinopoisk", currentUrl);
-        driver.quit();
+    public void  correctTransitionByClickLinkYouTubePage() {
+        KinopoiskPage kinopoiskPage = new KinopoiskPage(driver);
+        kinopoiskPage.clickKinopoiskPage(IMG_YOUTUBE_USER_KINOPOISK);
+        Assertions.assertEquals(YOUTUBE_COM_USER_KINOPOISK, kinopoiskPage.currentUrlWebDriver());
     }
 
+    @DisplayName("Transition the on page  Game Of Thrones on request  in the Search Box Query")
     @Test
-    public void correctTransitionSearchBoxQueryGameOfThrones() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        ChromeDriver driver = new ChromeDriver();
-        driver.navigate().to("https://www.kinopoisk.ru/");
-        Thread.sleep(3000);
-
-        driver.findElement(By.xpath("//input[@name='kp_query']")).sendKeys("Игра престолов (сериал) 2011 – 2019");
-        driver.findElement(By.xpath("//input[@name='kp_query']")).sendKeys(Keys.RETURN);
-
-        Thread.sleep(3000);
-        String currentUrl = driver.getCurrentUrl();
-        Assertions.assertEquals("https://www.kinopoisk.ru/series/464963/", currentUrl);
-        driver.quit();
+    public void correctTransitionPageGameOfThronesOnRequestInSearchBoxQuery() {
+        KinopoiskPage kinopoiskPage = new KinopoiskPage(driver);
+        kinopoiskPage.searchByPhraseAndClickEnter("Игра престолов (сериал) 2011 – 2019");
+        KinopoiskGameOfThronesPage kinopoiskGameOfThronesPage = new KinopoiskGameOfThronesPage(driver);
+        WebElement titleGameOfThrones = kinopoiskGameOfThronesPage.getTitleGameOfThrones();
+        Assertions.assertEquals(GAME_OF_THRONES_TEXT, titleGameOfThrones.getText());
     }
 
+    @DisplayName("Transition By Click Link TryPlus and correct transition  the on page TryPlus")
     @Test
-    public void correctTransitionByClickLinkTryPlus() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        ChromeDriver driver = new ChromeDriver();
-        driver.navigate().to("https://www.kinopoisk.ru/");
-
-        WebElement element = driver.findElement(By.xpath("//a[text()='Попробовать Плюс']"));
-        element.click();
-
-        Thread.sleep(3000);
-        String currentUrl = driver.getCurrentUrl();
-        Assertions.assertEquals("https://hd.kinopoisk.ru/?source=kinopoisk_head_button", currentUrl);
-        driver.quit();
+    public void correctTransitionByClickLinkTryPlusPage() {
+        KinopoiskPage kinopoiskPage = new KinopoiskPage(driver);
+        kinopoiskPage.clickKinopoiskPage(KINOPOISK_HEAD_BUTTON);
+        Assertions.assertEquals(KINOPOISK_RU_SOURCE_KINOPOISK_HEAD_BUTTON, kinopoiskPage.currentUrlWebElement());
     }
 
+    @DisplayName("Transition By Click Link JobOpenings and correct transition  the on page JobOpenings")
     @Test
-    public void correctTransitionByClickLinkJobOpenings() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        ChromeDriver driver = new ChromeDriver();
-        driver.navigate().to("https://www.kinopoisk.ru/");
-
-        WebElement element = driver.findElement(By.xpath("//a[text()='Вакансии']"));
-        element.click();
-
-        Thread.sleep(3000);
-        WebDriver window = driver.switchTo().window((new ArrayList<>(driver.getWindowHandles())).get(1));
-        String currentUrl = window.getCurrentUrl();
-        Assertions.assertEquals("https://yandex.ru/jobs/vacancies?professions=backend-developer&professions=database-developer&professions=desktop-developer&professions=frontend-developer&professions=full-stack-developer&professions=mob-app-developer&professions=mob-app-developer-android&professions=mob-app-developer-ios&professions=noc-developer&professions=system-developer", currentUrl);
-        driver.quit();
+    public void correctTransitionByClickLinkJobOpeningsPage() {
+        KinopoiskPage kinopoiskPage = new KinopoiskPage(driver);
+        kinopoiskPage.clickKinopoiskPage(JOBS_VACANCIES_SERVICES_KINOPOISK);
+        Assertions.assertEquals(
+                YANDEX_RU_JOBS__KINOPOISK, kinopoiskPage.currentUrlWebDriver());
     }
 }
